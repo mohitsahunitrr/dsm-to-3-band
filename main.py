@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 from osgeo import gdal, gdalnumeric as gn
 gdal.UseExceptions()
@@ -81,9 +82,9 @@ def get_rgb_from_24bits_values(values):
 
     Using `view` would be faster but that is hard to port.
     """
-    blue = gn.bitwise_and(values, 0b11111111)
+    blue = values & 0b11111111
     values = values >> 8
-    green = gn.bitwise_and(values, 0b11111111)
+    green = values & 0b11111111
     red = values >> 8
 
     return red, green, blue
